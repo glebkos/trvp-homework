@@ -1,14 +1,15 @@
 import './App.css';
-import {Page} from "./Pages/mainPage/Page.tsx";
-import {Modal} from "./Pages/modalWindow/Modal.tsx";
+import {MainPage} from './Pages/mainPage/MainPage.tsx';
+import {BrowserRouter, Route, Routes} from 'react-router';
 
 function App() {
 
   return (
-    <>
-        <Page />
-        <Modal  title="asfadfa"/>
-    </>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<MainPage />} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 

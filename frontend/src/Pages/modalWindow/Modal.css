@@ -17,10 +17,22 @@
     grid-template-columns: 100px 1fr 130px;
     gap: 3px;
     position: relative;
+    padding: 15px;
+
+    &::backdrop{
+        background-color: #050505;
+        opacity: 0.2;
+    }
 
     & > .modal-window__close {
         position: absolute;
-        inset: 10px 10px auto auto;
+        inset: 15px 15px auto auto;
+        width: 20px;
+        height: 20px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     & > .modal-window__title {
