@@ -16,7 +16,7 @@ export const MainPage = (): ReactElement => {
             <div className="main-page__window">
                 <div className="main-page__header">
                     <span className="main-page__header-title">Список менеджеров</span>
-                    <button className="main-page__add-button button-main">Добавить</button>
+                    <button className="main-page__add-button button">Добавить</button>
                 </div>
                 <div className="">
                     <VerticalList items={mockItems} Entity={ManagerItem}/>

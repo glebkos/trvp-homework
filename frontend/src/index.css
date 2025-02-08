@@ -1,3 +1,5 @@
+@import '@vkontakte/vkui-tokens/themes/vkBase/cssVars/declarations/index.css';
+
 :root {
   --background-color-main: #fefefe;
   --background-color-secondary: #efefef;
@@ -10,42 +12,14 @@
   background-color: var(--background-color-main);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 10px 15px;
-  font-size: 1em;
-  font-weight: 400;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.button-main{
-  background-color: var(--theme-color-main);
+.button{
+  border-radius: var(--vkui--size_border_radius--regular);
+  border: var(--vkui--size_border2x--regular) solid var(--vkui--color_field_border_alpha);
+  background-color: var(--vkui--color_text_accent);
+  color: var(--vkui--color_text_contrast);
+  &:hover{
+    cursor: pointer;
+    background-color: var(--vkui--color_background_accent--hover);
+    color: var(--vkui--color_text_contrast--hover);
+  }
 }

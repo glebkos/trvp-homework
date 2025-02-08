@@ -1,4 +1,11 @@
 #root {
   margin: 0;
   text-align: center;
+  background-color: var(--vkui--color_background);
+  min-height: 100dvh;
+  font-family: var(--vkui--font_family_base);
+}
+
+body{
+  margin: 0;
 }
