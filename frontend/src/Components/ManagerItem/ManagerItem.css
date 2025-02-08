@@ -1,0 +1,6 @@
+.manager-item__root{
+    display: grid;
+    grid-template-columns: 50px 1fr 150px;
+    grid-template-rows: 20px;
+    height: 70px;
+}

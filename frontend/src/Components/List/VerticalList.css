@@ -1,0 +1,4 @@
+.vertical-list__root{
+    display: flex;
+    flex-direction: column;
+}
