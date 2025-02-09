@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
 
-export interface ModalProps {
+export interface ModalContextType {
     children?: ReactElement;
 }

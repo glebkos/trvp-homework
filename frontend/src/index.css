@@ -13,6 +13,8 @@
 }
 
 .button{
+  padding: 8px 12px;
+  font-size: var(--vkui--font_headline1--font_size--regular);
   border-radius: var(--vkui--size_border_radius--regular);
   border: var(--vkui--size_border2x--regular) solid var(--vkui--color_field_border_alpha);
   background-color: var(--vkui--color_text_accent);

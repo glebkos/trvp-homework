@@ -27,6 +27,7 @@ export default tseslint.config(
         quotes: [2, 'single', { 'avoidEscape': true }],
         "array-bracket-spacing": ["error", "always"],
         "object-curly-spacing": ["error", "always"],
+        "key-spacing": ["error", { "beforeColon": false, "afterColon": true, "mode": "strict" }]
     },
   },
 )

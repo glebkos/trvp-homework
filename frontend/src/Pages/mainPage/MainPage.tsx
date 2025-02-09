@@ -4,6 +4,8 @@ import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ManagerItem } from '../../Components/ManagerItem/ManagerItem.tsx';
 import { Modal } from '../modalWindow/Modal.tsx';
 import { openModal, ModalContext } from '../modalWindow/Modal.helpers.tsx';
+import { ModalContextType } from '../modalWindow/Modal.types.ts';
+import { AddManagerModal } from '../../Components/AddManagerModal/AddManagerModal.tsx';
 
 const mockItems = [ {
     name: 'Какое-то классное имя',
@@ -14,11 +16,15 @@ const mockItems = [ {
 }, ];
 
 export const MainPage = (): ReactElement => {
-    const handleAdd = useCallback(() => {
-        openModal(<></>);
-    }, []);
+    const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
-    const [ modalValue, setModalValue ] = useState(null);
+    const handleAdd = useCallback(() => {
+        setModalValue({ children: (
+            <AddManagerModal />
+            ),
+        });
+        openModal();
+    }, []);
 
     return (
         <ModalContext.Provider  value={modalValue}>

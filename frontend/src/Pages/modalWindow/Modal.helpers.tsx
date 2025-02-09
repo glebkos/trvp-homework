@@ -1,11 +1,11 @@
-import { createContext } from 'react';
+import { Context, createContext } from 'react';
+import { ModalContextType } from './Modal.types.ts';
 
-export const ModalContext = createContext(null);
+export const ModalContext: Context<ModalContextType> = createContext({});
 
-export const openModal = (children) => {
+export const openModal = () => {
     const modalWindow: HTMLDialogElement = document.querySelector('#modal-window');
     modalWindow.showModal();
-    // setModalChildren(children);
 };
 
 export const closeModal = () => {
