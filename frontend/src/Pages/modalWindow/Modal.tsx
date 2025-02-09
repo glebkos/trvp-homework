@@ -1,19 +1,15 @@
 import {ReactElement} from 'react';
-import {ModalProps} from './Modal.types.ts';
 import { IoClose } from 'react-icons/io5';
 import './Modal.css';
+import {closeModal} from "./Modal.helpers.tsx";
 
-export const Modal = (props: ModalProps): ReactElement => {
-    const {children, title} = props;
+export const Modal = (): ReactElement => {
     return (
-        <div className="modal-wrapper">
-            <dialog className="modal-window">
-                <IoClose className="modal-window__close"/>
-                <span className="modal-window__title">{title}</span>
-                <div className="modal-window__content">{children}</div>
-                <button className="modal-window__cancel">Отмена</button>
-                <button className="modal-window__continue">Сохранить</button>
-            </dialog>
-        </div>
+        <dialog className="modal-window" id="modal-window">
+            <div className="modal-window__root">
+                <IoClose className="modal-window__close" onClick={closeModal}/>
+                {/*{modalChildren}*/}
+            </div>
+        </dialog>
     );
 };
