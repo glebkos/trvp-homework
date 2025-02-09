@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 interface AddModalProps {
     title: string;
 }
 
 export const AddManagerModal = (props: AddModalProps) => {
-    const { title} = props;
+    const { title } = props;
     return (
         <>
             <div className="manager-modal__title">{title}</div>
@@ -16,5 +16,5 @@ export const AddManagerModal = (props: AddModalProps) => {
                 </div>
             </form>
         </>
-    )
-}
+    );
+};

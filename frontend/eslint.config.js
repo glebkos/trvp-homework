@@ -25,6 +25,8 @@ export default tseslint.config(
       ],
         semi: [2, 'always'],
         quotes: [2, 'single', { 'avoidEscape': true }],
+        "array-bracket-spacing": ["error", "always"],
+        "object-curly-spacing": ["error", "always"],
     },
   },
 )
