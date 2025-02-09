@@ -4,15 +4,21 @@ import { ManagerItemInterface } from './ManagerItem.types.ts';
 import { Icon24Delete as DeleteIcon } from '@vkontakte/icons';
 import { Icon24WriteOutline as EditIcon } from '@vkontakte/icons';
 import { Icon56UserCircleOutline as UserIcon } from '@vkontakte/icons';
+import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
+import { ManagerModal } from '../AddManagerModal/ManagerModal.tsx';
 
 export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
-    const { name, id } = props;
+    const { name, profile, id, setModal } = props;
 
-    const editHandle = useCallback(() => {
+    const handleEdit = useCallback(() => {
+        setModal({
+            children: (<ManagerModal name={name} profile={profile}/>),
+        }
+        );
+        openModal();
+    }, [ setModal, name, profile ]);
 
-    }, []);
-
-    const deleteHandle = useCallback(() => {
+    const handleDelete = useCallback(() => {
 
     }, []);
 
@@ -24,8 +30,8 @@ export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
         <div className="manager-item__name">{name}</div>
         <div className="manager-item__id">ID:{id}</div>
         <div className="manager-item__button-block">
-            <EditIcon onClick={editHandle} className="manager-item__edit manager-item__button" />
-            <DeleteIcon onClick={deleteHandle} className="manager-item__delete manager-item__button" />
+            <EditIcon onClick={handleEdit} className="manager-item__edit manager-item__button" />
+            <DeleteIcon onClick={handleDelete} className="manager-item__delete manager-item__button" />
         </div>
     </div>
     );

@@ -9,9 +9,11 @@ import { ManagerModal } from '../../Components/AddManagerModal/ManagerModal.tsx'
 
 const mockItems = [ {
     name: 'Какое-то классное имя',
+    profile: 'profile1',
     id: '1',
 },{
     name: 'Какое-то классное имя 2',
+    profile: 'profile2',
     id: '2',
 }, ];
 
@@ -35,7 +37,7 @@ export const MainPage = (): ReactElement => {
                         <button className="main-page__add-button button" onClick={handleAdd}>Добавить</button>
                     </div>
                     <div className="">
-                        <VerticalList items={mockItems} Entity={ManagerItem}/>
+                        <VerticalList items={mockItems} Entity={ManagerItem} setModal={setModalValue}/>
                     </div>
                 </div>
                 <Modal />
