@@ -2,8 +2,8 @@ import './App.css';
 import { MainPage } from './Pages/mainPage/MainPage.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { Manager } from './Pages/managerPage/Manager.tsx';
-import {PageWrapper} from "./Pages/PageWrapper/PageWrapper.tsx";
-import {Settings} from "./Pages/Settings/Settings.tsx";
+import { PageWrapper } from './Pages/PageWrapper/PageWrapper.tsx';
+import { Settings } from './Pages/Settings/Settings.tsx';
 
 function App() {
 

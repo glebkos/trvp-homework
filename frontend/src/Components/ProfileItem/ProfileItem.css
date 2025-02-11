@@ -1,0 +1,13 @@
+.profile__root{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+    & > .profile__delete{
+        color: var(--vkui--color_icon_negative);
+        &:hover{
+            color: var(--vkui--color_icon_negative--hover);
+            cursor:pointer;
+        }
+    }
+}
