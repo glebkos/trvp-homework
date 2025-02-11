@@ -1,0 +1,30 @@
+.header__root{
+    height: 50px;
+    background-color: var(--vkui--color_background_content);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    & > .header__title{
+        font-weight: 500;
+        font-size: 34px;
+
+        &:visited, &:link{
+            color: unset;
+            text-decoration: none;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    & > .header__settings{
+        color: var(--vkui--color_icon_accent);
+        &:hover{
+            cursor: pointer;
+            color: var(--vkui--color_icon_accent--hover);
+        }
+    }
+}
