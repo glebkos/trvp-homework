@@ -1,6 +1,6 @@
-import {ReactElement, useCallback} from 'react';
+import { ReactElement, useCallback } from 'react';
 import './VerticalList.css';
-import {Link} from "react-router";
+import { Link } from 'react-router';
 
 export const VerticalList = (props):ReactElement => {
     const { items, Entity, setModal } = props;

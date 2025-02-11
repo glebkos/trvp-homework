@@ -6,12 +6,14 @@ import { Icon24WriteOutline as EditIcon } from '@vkontakte/icons';
 import { Icon56UserCircleOutline as UserIcon } from '@vkontakte/icons';
 import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ManagerModal } from '../ManagerModal/ManagerModal.tsx';
-import {Link} from "react-router";
+import { Link } from 'react-router';
 
 export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
     const { name, profile, id, setModal } = props;
 
-    const handleEdit = useCallback(() => {
+    const handleEdit = useCallback((event) => {
+        event.preventDefault();
+        event.stopPropagation();
         setModal({
             children: (<ManagerModal name={name} profile={profile}/>),
         }

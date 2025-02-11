@@ -3,12 +3,20 @@ import { Icon24WriteOutline as EditIcon } from '@vkontakte/icons';
 import { Icon24Delete as DeleteIcon } from '@vkontakte/icons';
 import { ClientsItemProps } from './ClientsItem.types.ts';
 import { useCallback } from 'react';
+import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
+import { ClientModal } from '../ClientModal/ClientModal.tsx';
 
 export const ClientsItem = (props: ClientsItemProps) => {
-    const { name, id } = props;
+    const { name, id, profile, setModal } = props;
 
-    const handleEdit = useCallback(() => {
-
+    const handleEdit = useCallback((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setModal({
+                children: (<ClientModal name={name} profile={profile}/>),
+            }
+        );
+        openModal();
     }, []);
     const handleDelete = useCallback(() => {
 
