@@ -10,6 +10,11 @@
         background-color: var(--vkui--color_background_content--hover);
         cursor: pointer;
     }
+
+    &:link, &:visited{
+        color: var(--vkui--color_text_primary);
+        text-decoration: none;
+    }
 }
 
 .manager-item__image-wrap{

@@ -1,0 +1,40 @@
+.client-modal__root{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: 10px;
+    min-height: 300px;
+
+    & > .client-modal__form{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        & > .client-modal__input-block{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            & > .client-modal__input{
+
+            }
+        }
+
+        & > .client-modal__button-block {
+            min-height: 35px;
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            & > .client-modal__button-cancel {
+                background-color: var(--vkui--color_background_secondary);
+                color: var(--vkui--color_text_secondary);
+                &:hover{
+                    background-color: var(--vkui--color_background_secondary--hover);
+                }
+            }
+        }
+    }
+}

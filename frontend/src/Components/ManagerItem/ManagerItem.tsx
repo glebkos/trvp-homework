@@ -5,7 +5,8 @@ import { Icon24Delete as DeleteIcon } from '@vkontakte/icons';
 import { Icon24WriteOutline as EditIcon } from '@vkontakte/icons';
 import { Icon56UserCircleOutline as UserIcon } from '@vkontakte/icons';
 import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
-import { ManagerModal } from '../AddManagerModal/ManagerModal.tsx';
+import { ManagerModal } from '../ManagerModal/ManagerModal.tsx';
+import {Link} from "react-router";
 
 export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
     const { name, profile, id, setModal } = props;
@@ -23,7 +24,9 @@ export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
     }, []);
 
     return (
-        <div className="manager-item__root">
+        <Link to={{
+            pathname: `/manager/${id}`,
+        }} className="manager-item__root">
             <div className="manager-item__image-wrap">
                 <UserIcon className="manager-item__image"/>
             </div>
@@ -33,6 +36,6 @@ export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
                 <EditIcon onClick={handleEdit} className="manager-item__edit manager-item__button" />
                 <DeleteIcon onClick={handleDelete} className="manager-item__delete manager-item__button" />
             </div>
-        </div>
+        </Link>
     );
 };

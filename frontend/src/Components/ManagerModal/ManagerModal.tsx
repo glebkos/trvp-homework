@@ -29,7 +29,7 @@ export const ManagerModal = (props: ManagerModalTypes) => {
                     <input type="text" name="name" className="manager-modal__input" value={props?.name}/>
                 </div>
                 <div className="manager-modal__input-block">
-                    <label htmlFor="profile">Выбирите профиль обслуживания</label>
+                    <label htmlFor="profile">Выберите профиль обслуживания</label>
                     <select name="profile" form="manager-modal-form">
                         {profilesItems(props?.profile)}
                     </select>

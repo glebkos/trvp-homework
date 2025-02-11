@@ -5,7 +5,7 @@ import { ManagerItem } from '../../Components/ManagerItem/ManagerItem.tsx';
 import { Modal } from '../modalWindow/Modal.tsx';
 import { openModal, ModalContext } from '../modalWindow/Modal.helpers.tsx';
 import { ModalContextType } from '../modalWindow/Modal.types.ts';
-import { ManagerModal } from '../../Components/AddManagerModal/ManagerModal.tsx';
+import { ManagerModal } from '../../Components/ManagerModal/ManagerModal.tsx';
 
 const mockItems = [ {
     name: 'Какое-то классное имя',
