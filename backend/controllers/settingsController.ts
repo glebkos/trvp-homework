@@ -1,5 +1,3 @@
-import {query} from "express";
-
 const pool = require('../config/db.ts');
 
 exports.settingsGet = async (req, res) => {
