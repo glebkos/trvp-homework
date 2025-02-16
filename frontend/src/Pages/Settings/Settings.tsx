@@ -47,7 +47,7 @@ export const Settings = () => {
                 <div className="settings__content">
                     <div className="settings__block">
                         <span className="settings__block-title">Ограничение на количество юрлиц(N)</span>
-                        <input type="text" className="settings__block-input input" ref={nInputRef} placeholder={N}/>
+                        <input type="text" className="settings__block-input input" ref={nInputRef} defaultValue={N}/>
                     </div>
                     <div className="settings__block">
                         <span className="settings__block-title">Профили обслуживания</span>

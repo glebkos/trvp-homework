@@ -15,7 +15,7 @@ router.delete('/profiles/:id', profileController.profilesDelete);
 router.get('/manager/list', managerController.managerListGet);
 router.get('/manager/:id', managerController.managerGet);
 router.post('/manager/create', managerController.managerAdd);
-router.post('/manager/:id/update', managerController.managerUpdate);
+router.post('/manager/:id', managerController.managerUpdate);
 router.delete('/manager/:id', managerController.managerDelete);
 
 router.get('/clients', clientsController.clientsGet);

@@ -1,4 +1,4 @@
 export interface ManagerModalTypes{
-    name?: string | '';
-    profile?: string | '';
+    id?: string | '';
+    setManagerList: (value: (((prevState: any[]) => any[]) | any[])) => void,
 }

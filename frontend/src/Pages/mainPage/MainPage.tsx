@@ -27,7 +27,7 @@ export const MainPage = (): ReactElement => {
 
     const handleAdd = useCallback(() => {
         setModalValue({ children: (
-            <ManagerModal />
+            <ManagerModal setManagerList={setManagerList}/>
             ),
         });
         openModal();
@@ -42,7 +42,7 @@ export const MainPage = (): ReactElement => {
                         <button className="main-page__add-button button" onClick={handleAdd}>Добавить</button>
                     </div>
                     <div className="">
-                        <VerticalList items={managerList} Entity={ManagerItem} setModal={setModalValue}/>
+                        <VerticalList items={managerList} Entity={ManagerItem} setModal={setModalValue} setManagerList={setManagerList}/>
                     </div>
                 </div>
                 <Modal />

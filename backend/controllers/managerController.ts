@@ -24,8 +24,9 @@ exports.managerGet = async (req, res) => {
 exports.managerUpdate = async (req, res) => {
     try {
         const { id } = req.params;
-        const {name, profile} = req.body;
-        const result = await pool.query('UPDATE manager SET manager_name=$1, manager_profile=$2 WHERE manager_id=$3', [name, profile, id]);
+        const {name, profile} = JSON.parse(req.body);
+        await pool.query('UPDATE manager SET manager_name=$1, manager_profile=$2 WHERE manager_id=$3', [name, profile, id]);
+        const result = await pool.query('SELECT manager_id as id, manager_name as name, manager_profile as profile FROM manager');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -34,8 +35,9 @@ exports.managerUpdate = async (req, res) => {
 
 exports.managerAdd = async (req, res) => {
     try {
-        const {name, profile} = req.body;
-        const result = await pool.query('INSERT INTO manager (manager_name, manager_profile) VALUES($1, $2)', [name, profile]);
+        const {name, profile} = JSON.parse(req.body);
+        await pool.query('INSERT INTO manager (manager_name, manager_profile) VALUES($1, $2)', [name, profile])
+        const result = await pool.query('SELECT manager_id as id, manager_name as name, manager_profile as profile FROM manager');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -45,7 +47,8 @@ exports.managerAdd = async (req, res) => {
 exports.managerDelete = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE FROM manager WHERE manager_id=$1', [id]);
+        await pool.query('DELETE FROM manager WHERE manager_id=$1', [id]);
+        const result = await pool.query('SELECT manager_id as id, manager_name as name, manager_profile as profile FROM manager');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });

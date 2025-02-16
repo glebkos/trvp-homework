@@ -7,22 +7,27 @@ import { Icon56UserCircleOutline as UserIcon } from '@vkontakte/icons';
 import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ManagerModal } from '../ManagerModal/ManagerModal.tsx';
 import { Link } from 'react-router';
+import {fetchData} from "../../helpers/fetchHelpers.ts";
 
 export const ManagerItem = (props: ManagerItemInterface): ReactElement => {
-    const { name, profile, id, setModal } = props;
+    const { name, profile, id, setModal, setManagerList } = props;
 
     const handleEdit = useCallback((event) => {
         event.preventDefault();
         event.stopPropagation();
         setModal({
-            children: (<ManagerModal name={name} profile={profile}/>),
+            children: (<ManagerModal id={id} setManagerList={setManagerList}/>),
         }
         );
         openModal();
     }, [ setModal, name, profile ]);
 
-    const handleDelete = useCallback(() => {
-
+    const handleDelete = useCallback((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        fetchData(`manager/${id}`, {
+            method: 'DELETE'
+        }).then(data => setManagerList(data));
     }, []);
 
     return (
