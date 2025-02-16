@@ -11,6 +11,7 @@ router.post('/settings', settingsController.settingsUpdate);
 router.get('/profiles', profileController.profilesGet);
 router.post('/profiles', profileController.profilesAdd);
 
+router.get('/manager/list', managerController.managerListGet);
 router.get('/manager/:id', managerController.managerGet);
 router.post('/manager/create', managerController.managerAdd);
 router.post('/manager/:id/update', managerController.managerUpdate);

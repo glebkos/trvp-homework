@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useState } from 'react';
+import {ReactElement, useCallback, useEffect, useState} from 'react';
 import './MainPage.css';
 import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ManagerItem } from '../../Components/ManagerItem/ManagerItem.tsx';
@@ -18,6 +18,18 @@ const mockItems = [ {
 }, ];
 
 export const MainPage = (): ReactElement => {
+    const [managerList, setManagerList] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:3000/api/v1/manager/list', {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setManagerList(data);
+                console.log(data);
+            })
+            .catch((error) => console.log(error));
+    }, []);
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
     const handleAdd = useCallback(() => {
@@ -37,7 +49,7 @@ export const MainPage = (): ReactElement => {
                         <button className="main-page__add-button button" onClick={handleAdd}>Добавить</button>
                     </div>
                     <div className="">
-                        <VerticalList items={mockItems} Entity={ManagerItem} setModal={setModalValue}/>
+                        <VerticalList items={managerList} Entity={ManagerItem} setModal={setModalValue}/>
                     </div>
                 </div>
                 <Modal />
