@@ -3,7 +3,7 @@ import './ManagerModal.css';
 import { closeModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ManagerModalTypes } from './ManagerModal.types.ts';
 
-export const ManagerModal = (props: ManagerModalTypes) => {
+export const ManagerModal = ({name='', profile=''}: ManagerModalTypes) => {
     const profiles: string[] = [ 'profile1', 'profile2' ];
 
     const profilesItems  = useCallback((checked): ReactElement[] => {
@@ -26,12 +26,12 @@ export const ManagerModal = (props: ManagerModalTypes) => {
             <form method="POST" className="manager-modal__form" name="manager-modal-form">
                 <div className="manager-modal__input-block">
                     <label htmlFor="name">ФИО</label>
-                    <input type="text" name="name" className="manager-modal__input" value={props?.name}/>
+                    <input type="text" name="name" className="manager-modal__input" value={name}/>
                 </div>
                 <div className="manager-modal__input-block">
                     <label htmlFor="profile">Выберите профиль обслуживания</label>
                     <select name="profile" form="manager-modal-form">
-                        {profilesItems(props?.profile)}
+                        {profilesItems(profile)}
                     </select>
                 </div>
                 <div className="manager-modal__button-block">

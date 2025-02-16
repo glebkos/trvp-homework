@@ -2,8 +2,8 @@ const pool = require('../config/db.ts');
 
 exports.clientsGet = async (req, res) => {
     try {
-        const {profile} = req.body;
-        const result = (await pool.query('SELECT * FROM clients WHERE clients_profile=$1', [profile]));
+        const {profile} = req.query;
+        const result = await pool.query('SELECT clients_id as id, clients_name as name, clients_profile as profile, clients_manager as manager FROM clients WHERE clients_profile=$1', [profile]);
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });

@@ -1,4 +1,4 @@
 export interface ManagerModalTypes{
-    name?: string;
-    profile?: string;
+    name?: string | '';
+    profile?: string | '';
 }

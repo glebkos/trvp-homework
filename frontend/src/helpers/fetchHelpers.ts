@@ -4,6 +4,8 @@ export const fetchData = async (src: string, options?: any) => {
     return await fetch(backendURL + src, {
         method: 'GET',
         ...options,
-    }).then((response) => response.json())
+        body: JSON.stringify(options?.body),
+    })
+        .then((response) => response.json())
         .catch((error) => console.log(error));
 };
