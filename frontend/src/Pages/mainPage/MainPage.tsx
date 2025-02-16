@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useEffect, useState} from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import './MainPage.css';
 import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ManagerItem } from '../../Components/ManagerItem/ManagerItem.tsx';
@@ -6,20 +6,10 @@ import { Modal } from '../modalWindow/Modal.tsx';
 import { openModal, ModalContext } from '../modalWindow/Modal.helpers.tsx';
 import { ModalContextType } from '../modalWindow/Modal.types.ts';
 import { ManagerModal } from '../../Components/ManagerModal/ManagerModal.tsx';
-import {fetchData} from "../../helpers/fetchHelpers.ts";
-
-const mockItems = [ {
-    name: 'Какое-то классное имя',
-    profile: 'profile1',
-    id: '1',
-},{
-    name: 'Какое-то классное имя 2',
-    profile: 'profile2',
-    id: '2',
-}, ];
+import { fetchData } from '../../helpers/fetchHelpers.ts';
 
 export const MainPage = (): ReactElement => {
-    const [managerList, setManagerList] = useState([]);
+    const [ managerList, setManagerList ] = useState([]);
     useEffect(() => {
         fetchData('manager/list').then((data) => setManagerList(data));
     }, []);

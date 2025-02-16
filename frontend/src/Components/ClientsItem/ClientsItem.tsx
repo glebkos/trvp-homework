@@ -17,7 +17,7 @@ export const ClientsItem = (props: ClientsItemProps) => {
             }
         );
         openModal();
-    }, []);
+    }, [ name, profile, setModal ]);
     const handleDelete = useCallback(() => {
 
     }, []);

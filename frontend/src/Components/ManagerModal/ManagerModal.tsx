@@ -1,12 +1,12 @@
-import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
+import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import './ManagerModal.css';
 import { closeModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ManagerModalTypes } from './ManagerModal.types.ts';
-import {fetchData} from "../../helpers/fetchHelpers.ts";
+import { fetchData } from '../../helpers/fetchHelpers.ts';
 
-export const ManagerModal = ({id, setManagerList}: ManagerModalTypes) => {
-    const [profiles, setProfiles] = useState([]);
-    const [manager, setManager] = useState(null);
+export const ManagerModal = ({ id, setManagerList }: ManagerModalTypes) => {
+    const [ profiles, setProfiles ] = useState([]);
+    const [ manager, setManager ] = useState(null);
     const nameRef = useRef<HTMLInputElement | null>(null);
     const selectRef = useRef<HTMLSelectElement | null>(null);
 
@@ -20,7 +20,7 @@ export const ManagerModal = ({id, setManagerList}: ManagerModalTypes) => {
         } else {
             setManager(null);
         }
-    }, [id]);
+    }, [ id ]);
 
     const profilesItems  = useCallback((checked): ReactElement[] => {
         const result = [];
@@ -48,7 +48,7 @@ export const ManagerModal = ({id, setManagerList}: ManagerModalTypes) => {
             }
         }).then(data => setManagerList(data));
         closeModal();
-    }, [setManagerList, nameRef, selectRef]);
+    }, [ setManagerList, nameRef, selectRef, id ]);
 
     return (
         <div className="manager-modal__root">

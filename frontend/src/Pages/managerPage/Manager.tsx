@@ -1,4 +1,4 @@
-import {ReactElement, useCallback, useEffect, useState} from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Modal } from '../modalWindow/Modal.tsx';
 import { ModalContext, openModal } from '../modalWindow/Modal.helpers.tsx';
@@ -7,23 +7,23 @@ import './Manager.css';
 import { ClientsItem } from '../../Components/ClientsItem/ClientsItem.tsx';
 import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ClientModal } from '../../Components/ClientModal/ClientModal.tsx';
-import {fetchData} from "../../helpers/fetchHelpers.ts";
-import {ManagerType} from "./Manager.types.ts";
+import { fetchData } from '../../helpers/fetchHelpers.ts';
+import { ManagerType } from './Manager.types.ts';
 
 export const Manager = (): ReactElement => {
     const params = useParams();
-    const [manager, setManager] = useState<ManagerType>();
-    const [managerClients, setManagerClients] = useState();
+    const [ manager, setManager ] = useState<ManagerType>();
+    const [ managerClients, setManagerClients ] = useState();
 
     useEffect(() => {
         fetchData(`manager/${params.id}`).then(data => setManager(data[0]));
-    }, [params.id]);
+    }, [ params.id ]);
 
     useEffect(() => {
         if (manager?.profile) {
             fetchData(`clients?profile=${manager?.profile}`).then(data => setManagerClients(data));
         }
-    }, [manager?.profile]);
+    }, [ manager?.profile ]);
 
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 

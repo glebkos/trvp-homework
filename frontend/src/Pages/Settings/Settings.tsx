@@ -1,13 +1,13 @@
 import './Settings.css';
 import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ProfileItem } from '../../Components/ProfileItem/ProfileItem.tsx';
-import {useEffect, useRef, useState} from "react";
-import {fetchData} from "../../helpers/fetchHelpers.ts";
-import {Link} from "react-router";
+import { useEffect, useRef, useState } from 'react';
+import { fetchData } from '../../helpers/fetchHelpers.ts';
+import { Link } from 'react-router';
 
 export const Settings = () => {
-    const [N, setN] = useState();
-    const [profiles, setProfiles] = useState([{}]);
+    const [ N, setN ] = useState();
+    const [ profiles, setProfiles ] = useState([ {} ]);
     const profileInputRef = useRef<HTMLInputElement | null>(null);
     const nInputRef = useRef<HTMLInputElement | null>(null);
 
