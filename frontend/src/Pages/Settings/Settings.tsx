@@ -1,12 +1,13 @@
 import './Settings.css';
 import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ProfileItem } from '../../Components/ProfileItem/ProfileItem.tsx';
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {fetchData} from "../../helpers/fetchHelpers.ts";
 
 export const Settings = () => {
     const [N, setN] = useState();
     const [profiles, setProfiles] = useState([{}]);
+    const profileAddButton = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         fetchData('settings').then(data => setN(data[0].n));
@@ -15,6 +16,15 @@ export const Settings = () => {
     useEffect(() => {
         fetchData('profiles').then(data => setProfiles(data));
     }, []);
+
+    const handleProfileAdd = () => {
+        fetchData('profiles', {
+            method: 'POST',
+            body: {
+                name: profileAddButton.current?.value
+            },
+        }).then(data => setProfiles(profiles.concat(data)));
+    };
 
     return (
         <div className="settings__root">
@@ -29,10 +39,10 @@ export const Settings = () => {
                     </div>
                     <div className="settings__block">
                         <span className="settings__block-title">Профили обслуживания</span>
-                        <VerticalList Entity={ProfileItem} items={profiles}/>
+                        <VerticalList Entity={ProfileItem} items={profiles} setItems={setProfiles}/>
                         <div className="setting__profile-add-block">
-                            <input type="text" className="input"/>
-                            <button className="button">Добавить</button>
+                            <input type="text" className="input" ref={profileAddButton}/>
+                            <button className="button" onClick={handleProfileAdd}>Добавить</button>
                         </div>
                     </div>
                 </div>

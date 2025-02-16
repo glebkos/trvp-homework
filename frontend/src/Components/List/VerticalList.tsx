@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 import './VerticalList.css';
 
 export const VerticalList = (props):ReactElement => {
-    const { items, Entity, setModal } = props;
+    const { items, Entity, setModal, setItems } = props;
     const rows = [];
     for (const item of items) {
         rows.push(
-                <Entity name={item.name} profile={item.profile} id={item.id} setModal={setModal}/>
+                <Entity name={item.name} profile={item.profile} id={item.id} setModal={setModal} setItems={setItems} items={items}/>
         );
     }
     return (<div className="vertical-list__root">

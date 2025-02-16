@@ -10,6 +10,7 @@ router.post('/settings', settingsController.settingsUpdate);
 
 router.get('/profiles', profileController.profilesGet);
 router.post('/profiles', profileController.profilesAdd);
+router.delete('/profiles/:id', profileController.profilesDelete);
 
 router.get('/manager/list', managerController.managerListGet);
 router.get('/manager/:id', managerController.managerGet);

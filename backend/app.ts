@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const routes = require('./routes/index.ts');
 
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use(bodyParser.text());
 app.use(express.json());
 
 app.use('/api/v1', routes);
