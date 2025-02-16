@@ -4,6 +4,7 @@ const routes = require('./routes/index.ts');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(express.json());
 
 app.use('/api/v1', routes);
 

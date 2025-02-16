@@ -1,18 +1,19 @@
 const pool = require('../config/db.ts');
 
-exports.settingsGet = async (req, res) => {
+exports.profilesGet = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM settings WHERE id=1');
+        const result = await pool.query('SELECT * FROM profiles');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 }
 
-exports.settingsUpdate = async (req, res) => {
+exports.profilesAdd = async (req, res) => {
     try {
-        const {N} = req.body;
-        const result = await pool.query('UPDATE settings SET N=$1 WHERE id=1', [N]);
+        console.log(req);
+        const { name } = req.body;
+        const result = await pool.query('INSERT INTO profiles (name) VALUES ($1)', [name]);
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
