@@ -11,8 +11,8 @@ exports.settingsGet = async (req, res) => {
 
 exports.settingsUpdate = async (req, res) => {
     try {
-        const {N} = req.body;
-        const result = await pool.query('UPDATE settings SET N=$1 WHERE id=1', [N]);
+        const {N} = JSON.parse(req.body);
+        const result = await pool.query('UPDATE settings SET N=$1 WHERE id=1 RETURNING N', [N]);
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
