@@ -6,6 +6,7 @@ import { Modal } from '../modalWindow/Modal.tsx';
 import { openModal, ModalContext } from '../modalWindow/Modal.helpers.tsx';
 import { ModalContextType } from '../modalWindow/Modal.types.ts';
 import { ManagerModal } from '../../Components/ManagerModal/ManagerModal.tsx';
+import {fetchData} from "../../helpers/fetchHelpers.ts";
 
 const mockItems = [ {
     name: 'Какое-то классное имя',
@@ -20,15 +21,7 @@ const mockItems = [ {
 export const MainPage = (): ReactElement => {
     const [managerList, setManagerList] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:3000/api/v1/manager/list', {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setManagerList(data);
-                console.log(data);
-            })
-            .catch((error) => console.log(error));
+        fetchData('manager/list').then((data) => setManagerList(data));
     }, []);
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
