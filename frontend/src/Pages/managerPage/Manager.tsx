@@ -14,6 +14,7 @@ export const Manager = (): ReactElement => {
     const params = useParams();
     const [ manager, setManager ] = useState<ManagerType>();
     const [ managerClients, setManagerClients ] = useState();
+    const [ currentProfile, setCurrentProfile ] = useState();
 
     useEffect(() => {
         fetchData(`manager/${params.id}`).then(data => setManager(data[0]));
@@ -24,6 +25,10 @@ export const Manager = (): ReactElement => {
             fetchData(`clients?profile=${manager.profile}`).then(data => setManagerClients(sortClients(data, manager.id)));
         }
     }, [ manager?.profile, manager?.id, params.id ]);
+
+    useEffect(() => {
+        fetchData(`profiles/${manager?.profile}`).then(data => setCurrentProfile(data.name));
+    }, [ manager?.profile, setCurrentProfile ]);
 
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
@@ -43,10 +48,11 @@ export const Manager = (): ReactElement => {
                             <div className="manager-page__header-info">
                                 <span className="manager-page__header-name">{manager?.name || ''}</span>
                                 <span className="manager-page__header-id">ID: {manager?.id || ''}</span>
-                                <span className="manager-page__header-profile">Профиль: {manager?.profile || ''}</span>
+                                <span className="manager-page__header-profile">Профиль: {currentProfile || ''}</span>
                             </div>
                             <button className="manager-page__add-button button" onClick={handleAdd}>Добавить</button>
                         </div>
+                        <span className="manager-page__title">Список клиентов для профиля «{currentProfile}»</span>
                         <div className="">
                             {managerClients && <VerticalList items={managerClients} Entity={ClientsItem} setModal={setModalValue} setClientsList={setManagerClients}/>}
                         </div>

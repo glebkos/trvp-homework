@@ -31,6 +31,7 @@
     display: flex;
     gap: 20px;
     margin-left: 10px;
+    color: var(--vkui--color_text_secondary);
 }
 
 .manager-item__name{

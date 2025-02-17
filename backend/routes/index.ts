@@ -9,6 +9,7 @@ router.get('/settings', settingsController.settingsGet);
 router.post('/settings', settingsController.settingsUpdate);
 
 router.get('/profiles', profileController.profilesGet);
+router.get('/profiles/:id', profileController.profileGet);
 router.post('/profiles', profileController.profilesAdd);
 router.delete('/profiles/:id', profileController.profilesDelete);
 
