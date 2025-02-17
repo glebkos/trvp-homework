@@ -26,6 +26,7 @@ export const Settings = () => {
                 name: profileInputRef.current?.value
             },
         }).then(data => setProfiles(profiles.concat(data)));
+        profileInputRef.current.value = null;
     };
 
     const handleSave = () => {
