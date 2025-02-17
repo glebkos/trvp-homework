@@ -56,11 +56,11 @@ export const ManagerModal = ({ id, setManagerList }: ManagerModalTypes) => {
             <form method="POST" className="manager-modal__form" name="manager-modal-form">
                 <div className="manager-modal__input-block">
                     <label htmlFor="name">ФИО</label>
-                    <input type="text" name="name" className="manager-modal__input" defaultValue={manager?.name} ref={nameRef}/>
+                    <input type="text" name="name" className="manager-modal__input input" defaultValue={manager?.name} ref={nameRef}/>
                 </div>
                 <div className="manager-modal__input-block">
                     <label htmlFor="profile">Выберите профиль обслуживания</label>
-                    <select name="profile" form="manager-modal-form" ref={selectRef}>
+                    <select name="profile" form="manager-modal-form" ref={selectRef} className="input">
                         {profilesItems(manager?.profile)}
                     </select>
                 </div>

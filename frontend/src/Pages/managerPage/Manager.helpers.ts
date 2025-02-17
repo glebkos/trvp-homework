@@ -1,3 +1,7 @@
+import { Context, createContext } from 'react';
+
+export const ManagerIDContext: Context<any> = createContext({});
+
 export const sortClients = (clients, id) => clients.sort((a, b) => {
     const aServed = a.manager === id;
     const bServed = b.manager === id;

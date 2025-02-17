@@ -1,4 +1,4 @@
-import {Context, createContext, ReactElement, useCallback, useEffect, useState} from 'react';
+import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Modal } from '../modalWindow/Modal.tsx';
 import { ModalContext, openModal } from '../modalWindow/Modal.helpers.tsx';
@@ -9,9 +9,7 @@ import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ClientModal } from '../../Components/ClientModal/ClientModal.tsx';
 import { fetchData } from '../../helpers/fetchHelpers.ts';
 import { ManagerType } from './Manager.types.ts';
-import {sortClients} from "./Manager.helpers.ts";
-
-export const ManagerIDContext: Context<any> = createContext({});
+import { sortClients, ManagerIDContext } from './Manager.helpers.ts';
 export const Manager = (): ReactElement => {
     const params = useParams();
     const [ manager, setManager ] = useState<ManagerType>();
@@ -23,9 +21,9 @@ export const Manager = (): ReactElement => {
 
     useEffect(() => {
         if (manager?.profile) {
-            fetchData('clients').then(data => setManagerClients(sortClients(data, manager.id)));
+            fetchData(`clients?profile=${manager.profile}`).then(data => setManagerClients(sortClients(data, manager.id)));
         }
-    }, [ manager?.profile, params.id]);
+    }, [ manager?.profile, manager?.id, params.id ]);
 
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 

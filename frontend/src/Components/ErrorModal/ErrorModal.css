@@ -1,0 +1,27 @@
+.error-modal__root{
+    height: 200px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    & > .error-modal__title {
+        margin-top: 10px;
+        font-weight: var(--vkui--font_title1--font_weight--regular);
+        font-size: var(--vkui--font_title1--font_size--regular);
+        line-height: var(--vkui--font_title1--line_height--regular);
+    }
+
+    & > .error-modal__description{
+        font-weight: var(--vkui--font_text--font_weight--regular);
+        font-size: var(--vkui--font_text--font_size--regular);
+        line-height: var(--vkui--font_text--line_height--regular);
+    }
+
+    & > .error-modal__button-block{
+        margin-top: auto;
+        align-content: end;
+        display: flex;
+        justify-content: end;
+    }
+}

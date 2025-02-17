@@ -1,7 +1,7 @@
 .manager-item__root{
     padding: 0 20px;
     display: grid;
-    grid-template-columns: 64px 1fr 150px;
+    grid-template-columns: 64px 1fr 300px;
     grid-template-rows: 50%;
     height: 64px;
     border-radius: var(--vkui--size_border_radius--regular);
@@ -40,8 +40,27 @@
     margin-left: 10px;
 }
 
+
 .manager-item__served{
+    margin-left: 30px;
     color: var(--vkui--color_text_secondary);
+    font-weight: 300;
+}
+
+.manager-item__delete-served{
+    color: var(--vkui--color_text_negative);
+    font-weight: 400;
+    &:hover {
+        color: var(--vkui--color_text_negative--hover);
+    }
+}
+
+.manager-item__add-served {
+    color: var(--vkui--color_text_accent);
+    font-weight: 400;
+    &:hover {
+        color: var(--vkui--color_text_accent--hover);
+    }
 }
 
 .manager-item__button-block{
