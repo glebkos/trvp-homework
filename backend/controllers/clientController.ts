@@ -51,7 +51,8 @@ exports.clientsAdd = async (req, res) => {
 exports.clientsDelete = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE FROM clients WHERE clients_id=$1', [id]);
+        await pool.query('DELETE FROM clients WHERE clients_id=$1', [id]);
+        const result = await pool.query('SELECT clients_id as id, clients_name as name, clients_profile as profile, clients_manager as manager FROM clients');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });

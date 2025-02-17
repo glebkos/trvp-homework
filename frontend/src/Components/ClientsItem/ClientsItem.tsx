@@ -6,6 +6,8 @@ import {useCallback, useContext} from 'react';
 import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ClientModal } from '../ClientModal/ClientModal.tsx';
 import {ManagerIDContext} from "../../Pages/managerPage/Manager.tsx";
+import {fetchData} from "../../helpers/fetchHelpers.ts";
+import {sortClients} from "../../Pages/managerPage/Manager.helpers.ts";
 
 export const ClientsItem = (props: ClientsItemProps) => {
     const { name, id, profile, setModal, setClientsList, managerID } = props;
@@ -20,9 +22,13 @@ export const ClientsItem = (props: ClientsItemProps) => {
         );
         openModal();
     }, [ name, profile, setModal ]);
-    const handleDelete = useCallback(() => {
-
-    }, []);
+    const handleDelete = useCallback((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        fetchData(`clients/${id}`, {
+            method: 'DELETE'
+        }).then(data => setClientsList(sortClients(data, currentManagerID)));
+    }, [id]);
     return (
         <div className="manager-item__root">
             <div className="manager-item__image-wrap">
