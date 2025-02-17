@@ -7,13 +7,13 @@ import { openModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ClientModal } from '../ClientModal/ClientModal.tsx';
 
 export const ClientsItem = (props: ClientsItemProps) => {
-    const { name, id, profile, setModal } = props;
+    const { name, id, profile, setModal, setClientsList, served } = props;
 
     const handleEdit = useCallback((event) => {
         event.preventDefault();
         event.stopPropagation();
         setModal({
-                children: (<ClientModal name={name} profile={profile}/>),
+                children: (<ClientModal id={id} setClientsList={setClientsList}/>),
             }
         );
         openModal();
@@ -27,7 +27,7 @@ export const ClientsItem = (props: ClientsItemProps) => {
                 <UserIcon className="manager-item__image"/>
             </div>
             <div className="manager-item__name">{name}</div>
-            <div className="manager-item__id">ID:{id}</div>
+            <div className="manager-item__id">ID:{id} {served && <div className="manager-item__served">Обслуживается</div>}</div>
             <div className="manager-item__button-block">
                 <EditIcon onClick={handleEdit} className="manager-item__edit manager-item__button"/>
                 <DeleteIcon onClick={handleDelete} className="manager-item__delete manager-item__button"/>

@@ -1,4 +1,4 @@
 export interface ClientModalTypes {
-    name?: string;
-    profile?: string;
+    id?: string;
+    setClientsList: (props: any) => any;
 }

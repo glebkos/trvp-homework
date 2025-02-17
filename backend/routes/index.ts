@@ -19,8 +19,9 @@ router.post('/manager/:id', managerController.managerUpdate);
 router.delete('/manager/:id', managerController.managerDelete);
 
 router.get('/clients', clientsController.clientsGet);
+router.get('/clients/:id', clientsController.clientGet);
 router.post('/clients/create', clientsController.clientsAdd);
-router.post('/clients/:id/update', clientsController.clientsUpdate);
+router.post('/clients/:id', clientsController.clientsUpdate);
 router.delete('/clients/:id', clientsController.clientsDelete);
 
 module.exports = router;

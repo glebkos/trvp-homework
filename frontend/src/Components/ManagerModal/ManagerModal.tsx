@@ -44,7 +44,7 @@ export const ManagerModal = ({ id, setManagerList }: ManagerModalTypes) => {
             method: 'POST',
             body: {
                 name: nameRef.current?.value,
-                profiles: selectRef.current?.value,
+                profile: selectRef.current?.value,
             }
         }).then(data => setManagerList(data));
         closeModal();

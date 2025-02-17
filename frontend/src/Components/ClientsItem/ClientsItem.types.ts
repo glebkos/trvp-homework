@@ -5,4 +5,6 @@ export interface ClientsItemProps {
     profile: string;
     id: string;
     setModal: (props: ModalContextType) => void;
+    currentClients: any[];
+    served: boolean;
 }

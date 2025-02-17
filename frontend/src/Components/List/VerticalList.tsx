@@ -6,7 +6,7 @@ export const VerticalList = (props):ReactElement => {
     const rows = [];
     for (const item of items) {
         rows.push(
-                <Entity name={item.name} profile={item.profile} id={item.id} items={items} {...restProps}/>
+                <Entity name={item?.name} profile={item?.profile} id={item?.id} items={items} served={item?.served} {...restProps}/>
         );
     }
     return (<div className="vertical-list__root">

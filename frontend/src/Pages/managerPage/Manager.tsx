@@ -21,15 +21,30 @@ export const Manager = (): ReactElement => {
 
     useEffect(() => {
         if (manager?.profile) {
-            fetchData(`clients?profile=${manager?.profile}`).then(data => setManagerClients(data));
+            fetchData('clients').then(data => data.map((a) => {
+                if (manager.clients.find(item => item.id === a.id)){
+                    a.served = true;
+                } else {
+                    a.served = false;
+                }
+                return a;
+            })).then(data => setManagerClients(data.sort((a, b) => {
+                if (a.served === true) {
+                    return -1;
+                }
+                if (a.id < b.id){
+                    return -1;
+                }
+                return 1;
+            })));
         }
-    }, [ manager?.profile ]);
+    }, [ manager, setManagerClients ]);
 
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
     const handleAdd = useCallback(() => {
         setModalValue({ children: (
-                <ClientModal />
+                <ClientModal setClientsList={setManagerClients}/>
             ),
         });
         openModal();
@@ -47,7 +62,7 @@ export const Manager = (): ReactElement => {
                         <button className="manager-page__add-button button" onClick={handleAdd}>Добавить</button>
                     </div>
                     <div className="">
-                        {managerClients && <VerticalList items={managerClients} Entity={ClientsItem} setModal={setModalValue}/>}
+                        {managerClients && <VerticalList items={managerClients} Entity={ClientsItem} setModal={setModalValue} setClientsList={setManagerClients}/>}
                     </div>
                 </div>
                 <Modal />
