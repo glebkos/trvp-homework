@@ -1,10 +1,13 @@
-import {ReactElement, useCallback, useEffect, useRef, useState} from 'react';
+import {ReactElement, useCallback, useContext, useEffect, useRef, useState} from 'react';
 import { closeModal } from '../../Pages/modalWindow/Modal.helpers.tsx';
 import { ClientModalTypes } from './ClientModal.types.ts';
 import './ClientModal.css';
 import {fetchData} from "../../helpers/fetchHelpers.ts";
+import {ManagerIDContext} from "../../Pages/managerPage/Manager.tsx";
+import {sortClients} from "../../Pages/managerPage/Manager.helpers.ts";
 
 export const ClientModal = (props: ClientModalTypes) => {
+    const managerID = useContext(ManagerIDContext);
     const { id, setClientsList } = props;
     const [ profiles, setProfiles ] = useState([]);
     const [ client, setClient ] = useState<{name: string, profile: number}>([]);
@@ -46,10 +49,11 @@ export const ClientModal = (props: ClientModalTypes) => {
             body: {
                 name: nameRef.current?.value,
                 profile: selectRef.current?.value,
+                manager: managerID,
             }
-        }).then(data => setClientsList(data));
+        }).then(data => setClientsList(sortClients(data, managerID)));
         closeModal();
-    }, []);
+    }, [id, setClientsList]);
 
     return (
     <div className="client-modal__root">

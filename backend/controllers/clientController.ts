@@ -29,7 +29,8 @@ exports.clientsUpdate = async (req, res) => {
     try {
         const { id } = req.params;
         const {name, profile, manager} = JSON.parse(req.body);
-        const result = await pool.query('UPDATE clients SET clients_name=$1, clients_profile=$2, clients_manager=$3 WHERE clients_id=$4', [name, profile, manager, id]);
+        await pool.query('UPDATE clients SET clients_name=$1, clients_profile=$2, clients_manager=$3 WHERE clients_id=$4', [name, profile, manager, id]);
+        const result = await pool.query('SELECT clients_id as id, clients_name as name, clients_profile as profile, clients_manager as manager FROM clients');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -39,7 +40,8 @@ exports.clientsUpdate = async (req, res) => {
 exports.clientsAdd = async (req, res) => {
     try {
         const {name, profile, manager} = JSON.parse(req.body);
-        const result = await pool.query('INSERT INTO clients (clients_name, clients_profile, clients_manager) VALUES($1, $2, $3)', [name, profile, manager]);
+        await pool.query('INSERT INTO clients (clients_name, clients_profile, clients_manager) VALUES($1, $2, $3)', [name, profile, manager]);
+        const result = await pool.query('SELECT clients_id as id, clients_name as name, clients_profile as profile, clients_manager as manager FROM clients');
         res.status(200).json(result.rows);
     } catch (err) {
         res.status(500).json({ error: err.message });

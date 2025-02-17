@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import {Context, createContext, ReactElement, useCallback, useEffect, useState} from 'react';
 import { useParams } from 'react-router';
 import { Modal } from '../modalWindow/Modal.tsx';
 import { ModalContext, openModal } from '../modalWindow/Modal.helpers.tsx';
@@ -9,7 +9,9 @@ import { VerticalList } from '../../Components/List/VerticalList.tsx';
 import { ClientModal } from '../../Components/ClientModal/ClientModal.tsx';
 import { fetchData } from '../../helpers/fetchHelpers.ts';
 import { ManagerType } from './Manager.types.ts';
+import {sortClients} from "./Manager.helpers.ts";
 
+export const ManagerIDContext: Context<any> = createContext({});
 export const Manager = (): ReactElement => {
     const params = useParams();
     const [ manager, setManager ] = useState<ManagerType>();
@@ -21,24 +23,9 @@ export const Manager = (): ReactElement => {
 
     useEffect(() => {
         if (manager?.profile) {
-            fetchData('clients').then(data => data.map((a) => {
-                if (manager.clients.find(item => item.id === a.id)){
-                    a.served = true;
-                } else {
-                    a.served = false;
-                }
-                return a;
-            })).then(data => setManagerClients(data.sort((a, b) => {
-                if (a.served === true) {
-                    return -1;
-                }
-                if (a.id < b.id){
-                    return -1;
-                }
-                return 1;
-            })));
+            fetchData('clients').then(data => setManagerClients(sortClients(data, manager.id)));
         }
-    }, [ manager, setManagerClients ]);
+    }, [ manager?.profile, params.id]);
 
     const [ modalValue, setModalValue ] = useState<ModalContextType>(null);
 
@@ -51,21 +38,23 @@ export const Manager = (): ReactElement => {
     }, []);
     return (
         <ModalContext.Provider  value={modalValue}>
-            <div className="manager-page__root">
-                <div className="manager-page__window">
-                    <div className="manager-page__header">
-                        <div className="manager-page__header-info">
-                            <span className="manager-page__header-name">{manager?.name || ''}</span>
-                            <span className="manager-page__header-id">ID: {manager?.id || ''}</span>
-                            <span className="manager-page__header-profile">Профиль: {manager?.profile || ''}</span>
+            <ManagerIDContext.Provider value={manager?.id}>
+                <div className="manager-page__root">
+                    <div className="manager-page__window">
+                        <div className="manager-page__header">
+                            <div className="manager-page__header-info">
+                                <span className="manager-page__header-name">{manager?.name || ''}</span>
+                                <span className="manager-page__header-id">ID: {manager?.id || ''}</span>
+                                <span className="manager-page__header-profile">Профиль: {manager?.profile || ''}</span>
+                            </div>
+                            <button className="manager-page__add-button button" onClick={handleAdd}>Добавить</button>
                         </div>
-                        <button className="manager-page__add-button button" onClick={handleAdd}>Добавить</button>
+                        <div className="">
+                            {managerClients && <VerticalList items={managerClients} Entity={ClientsItem} setModal={setModalValue} setClientsList={setManagerClients}/>}
+                        </div>
                     </div>
-                    <div className="">
-                        {managerClients && <VerticalList items={managerClients} Entity={ClientsItem} setModal={setModalValue} setClientsList={setManagerClients}/>}
-                    </div>
+                    <Modal />
                 </div>
-                <Modal />
-            </div>
+            </ManagerIDContext.Provider>
         </ModalContext.Provider>);
 };
