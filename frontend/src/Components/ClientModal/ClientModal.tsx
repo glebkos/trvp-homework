@@ -8,7 +8,7 @@ import { sortClients } from '../../Pages/managerPage/Manager.helpers.ts';
 
 export const ClientModal = (props: ClientModalTypes) => {
     const managerID = useContext(ManagerIDContext);
-    const { id, setClientsList } = props;
+    const { id, setClientsList, profile } = props;
     const [ profiles, setProfiles ] = useState([]);
     const [ client, setClient ] = useState<{name: string, profile: number}>(null);
     const nameRef = useRef<HTMLInputElement | null>(null);
@@ -25,6 +25,10 @@ export const ClientModal = (props: ClientModalTypes) => {
             setClient(null);
         }
     }, [ id, setClient ]);
+
+    useEffect(() => {
+        nameRef.current.value = client?.name || '';
+    }, [ client?.name, nameRef ]);
 
     const profilesItems  = useCallback((checked): ReactElement[] => {
         const result = [];
@@ -51,12 +55,13 @@ export const ClientModal = (props: ClientModalTypes) => {
                 profile: selectRef.current?.value,
             }
         }).then(data => {
-            if (data[0].manager === managerID || data[0].manager === null) {
+            console.log(data.profile, profile);
+            if (id || (data[0].profile === profile)) {
                 setClientsList(sortClients(data, managerID));
             }
         });
         closeModal();
-    }, [ id, setClientsList, managerID ]);
+    }, [ id, setClientsList, managerID, profile ]);
 
     return (
     <div className="client-modal__root">
@@ -64,7 +69,7 @@ export const ClientModal = (props: ClientModalTypes) => {
         <form method="POST" className="client-modal__form" name="client-modal-form">
             <div className="client-modal__input-block">
                 <label htmlFor="name">Название</label>
-                <input type="text" name="name" className="client-modal__input input" defaultValue={client?.name} ref={nameRef}/>
+                <input type="text" name="name" className="client-modal__input input" ref={nameRef}/>
             </div>
             <div className="client-modal__input-block">
                 <label htmlFor="profile">Выберите профиль обслуживания</label>

@@ -22,6 +22,10 @@ export const ManagerModal = ({ id, setManagerList }: ManagerModalTypes) => {
         }
     }, [ id ]);
 
+    useEffect(() => {
+        nameRef.current.value = manager?.name || '';
+    }, [ manager?.name, nameRef ]);
+
     const profilesItems  = useCallback((checked): ReactElement[] => {
         const result = [];
         for (const item of profiles) {

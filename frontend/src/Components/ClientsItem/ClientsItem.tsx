@@ -18,19 +18,19 @@ export const ClientsItem = (props: ClientsItemProps) => {
         event.preventDefault();
         event.stopPropagation();
         setModal({
-                children: (<ClientModal id={id} setClientsList={setClientsList}/>),
+                children: (<ClientModal id={id} setClientsList={setClientsList} profile={profile}/>),
             }
         );
         openModal();
-    }, [ setModal, id, setClientsList ]);
+    }, [ setModal, id, setClientsList, profile ]);
 
     const handleDelete = useCallback((event) => {
         event.preventDefault();
         event.stopPropagation();
         fetchData(`clients/${id}`, {
             method: 'DELETE'
-        }).then(data => setClientsList(data));
-    }, [ id, setClientsList ]);
+        }).then(data => setClientsList(sortClients(data, currentManagerID)));
+    }, [ id, setClientsList, currentManagerID ]);
 
     const handleAddToService = useCallback((event) => {
         event.preventDefault();

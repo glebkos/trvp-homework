@@ -34,11 +34,11 @@ export const Manager = (): ReactElement => {
 
     const handleAdd = useCallback(() => {
         setModalValue({ children: (
-                <ClientModal setClientsList={setManagerClients}/>
+                <ClientModal setClientsList={setManagerClients} profile={manager?.profile}/>
             ),
         });
         openModal();
-    }, []);
+    }, [ manager?.profile ]);
     return (
         <ModalContext.Provider  value={modalValue}>
             <ManagerIDContext.Provider value={manager?.id}>
@@ -48,7 +48,7 @@ export const Manager = (): ReactElement => {
                             <div className="manager-page__header-info">
                                 <span className="manager-page__header-name">{manager?.name || ''}</span>
                                 <span className="manager-page__header-id">ID: {manager?.id || ''}</span>
-                                <span className="manager-page__header-profile">Профиль: {currentProfile || ''}</span>
+                                <span className="manager-page__header-profile">Профиль: {currentProfile}</span>
                             </div>
                             <button className="manager-page__add-button button" onClick={handleAdd}>Добавить</button>
                         </div>
